@@ -1,0 +1,69 @@
+include:
+  - project: swisscom/scsa-shared-tools/templates
+    ref: main
+    file:
+      - resources/workflow.yml
+      - resources/proxy.yml
+      - resources/registry.yml
+      - resources/go.yml
+
+  - component: $CI_SERVER_FQDN/swisscom/scsa-shared-tools/templates/kaniko@main
+  - component: $CI_SERVER_FQDN/swisscom/scsa-shared-tools/templates/release@main
+
+  - template: Jobs/SAST.latest.gitlab-ci.yml
+    rules:
+      - if: $CI_COMMIT_TAG
+        when: never
+      - when: always
+
+stages:
+  - quality
+  - build
+  - release
+
+# Lint all files in the repository
+lint:
+  except:
+    - tags
+  stage: quality
+  image: $DOCKER_REGISTRY_COMMON/style:latest
+  script:
+    - task lint
+
+# Lint all go files in the repository
+go:
+  extends:
+    - .golangci-lint-cache
+  except:
+    - tags
+  stage: quality
+  image: $DOCKER_REGISTRY_COMMON/go:latest
+  script:
+    - task go:lint
+
+docker:
+  stage: build
+  rules:
+    - if: $CI_COMMIT_TAG
+      variables:
+        DOCKER_TAG: $CI_COMMIT_TAG
+
+    - if: $CI_COMMIT_REF_NAME == "main"
+      variables:
+        DOCKER_TAG: latest
+
+    - when: on_success
+      variables:
+        DOCKER_TAG: dev
+  extends:
+    - .kaniko
+    - .go-build-cache
+  variables:
+    DOCKERFILE: Dockerfile
+    DOCKER_IMAGE: go-match
+    DOCKER_IMAGE_ENV_VAR: GO_MATCH
+    DOCKER_REGISTRY: $DOCKER_REGISTRY_ART_COMMON
+    DOCKER_REGISTRY_MIRRORS: >
+      $DOCKER_REGISTRY_BIN_COMMON
+    ARGS: >
+      --build-arg GO_MATCH_VERSION=$CI_COMMIT_REF_NAME-$CI_COMMIT_SHA
