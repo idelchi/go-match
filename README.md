@@ -1,8 +1,9 @@
-# go-match Overview
+# go-match
 
-`go-match` go-match is a simple command-line utility to check if a path matches a globstar pattern.
+`go-match` is a simple command-line utility that filters a list of paths based on include and exclude globstar patterns.
 
-Returns a string "true" if the path matches the pattern, "false" otherwise.
+The program takes a list of paths as input and outputs a JSON array of paths that match
+the include patterns and don't match the exclude patterns.
 
 ## Getting Started
 
@@ -25,10 +26,26 @@ Alternatively, you can install it directly using:
 
 ### Usage
 
-    go-match [flags] <path> <pattern>
+    go-match [flags] [paths...]
+
+The available flags include:
+
+    --include: Specify one or more include patterns (can be used multiple times)
+    --exclude: Specify one or more exclude patterns (can be used multiple times)
+
+Example:
+
+    go-match --include "**/*.go" --exclude "path/to/another/*" path/to/dir1 path/to/dir2 path/to/file.go path/to/another/file.go
+
+will output
+
+    ["path/to/file.go"]
 
 For more details on usage and configuration, run:
 
     go-match --help
 
 This will display a comprehensive list of flags and their descriptions.
+
+All flags can be set through environment variables. The prefix _GO_MATCH_ is used to avoid conflicts.
+For example, to set the include paths, use `GO_MATCH_INCLUDE`.

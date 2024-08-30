@@ -9,6 +9,15 @@ include:
 
   - component: $CI_SERVER_FQDN/swisscom/scsa-shared-tools/templates/kaniko@main
   - component: $CI_SERVER_FQDN/swisscom/scsa-shared-tools/templates/release@main
+    rules:
+      - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push"
+    inputs:
+      changes:
+        - "**/*.go"
+        - Dockerfile
+        - go.mod
+        - go.sum
+        - .dockerignore
 
   - template: Jobs/SAST.latest.gitlab-ci.yml
     rules:
@@ -18,6 +27,7 @@ include:
 
 stages:
   - quality
+  - test
   - build
   - release
 
@@ -41,6 +51,19 @@ go:
   script:
     - task go:lint
 
+# Run all tests in the repository
+test:
+  extends:
+    - .go-build-cache
+  except:
+    - tags
+  stage: test
+  image: $DOCKER_REGISTRY_COMMON/go:latest
+  script:
+    - task go:test
+    - task sanity
+
+# Build & publish the docker image
 docker:
   stage: build
   rules:
