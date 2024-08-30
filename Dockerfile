@@ -13,7 +13,7 @@ FROM ${IMAGE_BASE_REGISTRY}golang:${GO_VERSION}-alpine${ALPINE_VERSION} AS build
 
 LABEL maintainer=arash.idelchi
 
-# (can use root througout the image since it's a staged build)
+# (can use root throughout the image since it's a staged build)
 # hadolint ignore=DL3002
 USER root
 
@@ -52,6 +52,8 @@ ENV TZ=Europe/Zurich
 FROM scratch AS standalone
 
 LABEL maintainer=arash.idelchi
+
+ARG USER=user
 
 # Copy artifacts from the build stage
 COPY --from=build /etc/passwd /etc/passwd

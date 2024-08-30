@@ -14,15 +14,7 @@ the include patterns and don't match the exclude patterns.
 
 ### Installation
 
-Clone the repository and build the binary with:
-
-    git clone ssh://git@code.swisscom.com:2222/swisscom/scsa-shared-tools/go-match.git
-    cd go-match
-    go build -o go-match .
-
-Alternatively, you can install it directly using:
-
-    go install code.swisscom.com/swisscom/scsa-shared-tools/go-match@latest
+    go install github.com/idelchi/go-match/cmd/go-match@latest
 
 ### Usage
 
@@ -46,6 +38,3 @@ For more details on usage and configuration, run:
     go-match --help
 
 This will display a comprehensive list of flags and their descriptions.
-
-All flags can be set through environment variables. The prefix _GO_MATCH_ is used to avoid conflicts.
-For example, to set the include paths, use `GO_MATCH_INCLUDE`.

@@ -1,4 +1,4 @@
-module code.swisscom.com/swisscom/scsa-shared-tools/go-match
+module github.com/idelchi/go-match
 
 go 1.23
 

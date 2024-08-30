@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"os"
 
-	"code.swisscom.com/swisscom/scsa-shared-tools/go-match/internal/match"
+	"github.com/idelchi/go-match/internal/match"
 )
 
 // Global variable for CI stamping.

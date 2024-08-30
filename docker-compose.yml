@@ -4,7 +4,7 @@ services:
       args:
         - GO_MATCH_VERSION=local
     pull_policy: if_not_present
-    image: common-docker-local.bin.swisscom.com/go-match:dev
+    image: idelchi/go-match:dev
     container_name: go-match
     hostname: go-match
     user: user
@@ -18,7 +18,7 @@ services:
 
   kit:
     pull_policy: if_not_present
-    image: common-docker-local.bin.swisscom.com/${IMAGE}:dev
+    image: idelchi/devenv:latest
     container_name: kit
     hostname: kit
     volumes:
