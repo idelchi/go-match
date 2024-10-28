@@ -9,7 +9,9 @@ the include patterns and don't match the exclude patterns.
 
 ### From source
 
-    go install github.com/idelchi/go-match/cmd/go-match@latest
+```sh
+go install github.com/idelchi/go-match/cmd/go-match@latest
+```
 
 ### From installation script
 
@@ -17,7 +19,7 @@ the include patterns and don't match the exclude patterns.
 curl -sSL https://raw.githubusercontent.com/idelchi/go-match/refs/heads/dev/install.sh | sh -s -- -d ~/.local/bin
 ```
 
-### Usage
+## Usage
 
 ```sh
 go-match [flags] [paths...]

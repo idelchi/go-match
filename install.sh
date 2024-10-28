@@ -9,4 +9,8 @@ for arg in "$@"; do
   fi
 done
 
-curl ${DISABLE_SSL:+-k} -sSL https://raw.githubusercontent.com/idelchi/scripts/refs/heads/main/install.sh | INSTALLER_TOOL="go-match" sh -s -- "$@"
+curl ${DISABLE_SSL:+-k} \
+  -sSL \
+  https://raw.githubusercontent.com/idelchi/scripts/refs/heads/main/install.sh |
+  INSTALLER_TOOL="go-match" \
+    sh -s -- "$@"
