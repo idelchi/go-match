@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"os"
-	"strings"
 
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
@@ -37,10 +36,6 @@ func parseFlags() (cfg Config, err error) {
 	if err := viper.BindPFlags(pflag.CommandLine); err != nil {
 		return cfg, fmt.Errorf("binding flags: %w", err)
 	}
-
-	viper.SetEnvPrefix("go_match")
-	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
-	viper.AutomaticEnv()
 
 	if err := viper.Unmarshal(&cfg); err != nil {
 		return cfg, fmt.Errorf("unmarshalling config: %w", err)

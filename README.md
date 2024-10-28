@@ -5,36 +5,49 @@
 The program takes a list of paths as input and outputs a JSON array of paths that match
 the include patterns and don't match the exclude patterns.
 
-## Getting Started
+## Installation
 
-### Prerequisites
+### From source
 
-- Go 1.23 or higher
-- Git
+```sh
+go install github.com/idelchi/go-match/cmd/go-match@latest
+```
 
-### Installation
+### From installation script
 
-    go install github.com/idelchi/go-match/cmd/go-match@latest
+```sh
+curl -sSL https://raw.githubusercontent.com/idelchi/go-match/refs/heads/main/install.sh | sh -s -- -d ~/.local/bin
+```
 
-### Usage
+## Usage
 
-    go-match [flags] [paths...]
+```sh
+go-match [flags] [paths...]
+```
 
-The available flags include:
+Run `go-match` with the desired flags. The available flags include:
 
-    --include: Specify one or more include patterns (can be used multiple times)
-    --exclude: Specify one or more exclude patterns (can be used multiple times)
+```sh
+--include: Specify one or more include patterns (can be used multiple times)
+--exclude: Specify one or more exclude patterns (can be used multiple times)
+```
 
 Example:
 
-    go-match --include "**/*.go" --exclude "path/to/another/*" path/to/dir1 path/to/dir2 path/to/file.go path/to/another/file.go
+```sh
+go-match --include "**/*.go" --exclude "path/to/another/*" path/to/dir1 path/to/dir2 path/to/file.go path/to/another/file.go
+```
 
 will output
 
-    ["path/to/file.go"]
+```sh
+["path/to/file.go"]
+```
 
 For more details on usage and configuration, run:
 
-    go-match --help
+```sh
+go-match --help
+```
 
 This will display a comprehensive list of flags and their descriptions.
