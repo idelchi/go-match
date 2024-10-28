@@ -40,7 +40,9 @@ jobs:
           echo "LAST_TAG=${LAST_TAG}" >> ${GITHUB_ENV}
           echo "LAST_TAG=${LAST_TAG}" >> ${GITHUB_OUTPUT}
 
-          NEXT_TAG=$(echo ${LAST_TAG} | go run ./cmd/go-next-tag)
+          curl -sSL https://raw.githubusercontent.com/idelchi/go-next-tag/refs/heads/dev/install.sh | sh -s -- -d ~/.local/bin
+
+          NEXT_TAG=$(echo ${LAST_TAG} | go-next-tag)
 
           echo "NEXT_TAG=${NEXT_TAG}" >> ${GITHUB_ENV}
           echo "NEXT_TAG=${NEXT_TAG}" >> ${GITHUB_OUTPUT}
