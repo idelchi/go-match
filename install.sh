@@ -11,6 +11,6 @@ done
 
 curl ${DISABLE_SSL:+-k} \
   -sSL \
-  https://raw.githubusercontent.com/idelchi/scripts/refs/heads/main/install.sh |
+  https://raw.githubusercontent.com/idelchi/scripts/refs/heads/dev/install.sh |
   INSTALLER_TOOL="go-match" \
     sh -s -- "$@"
