@@ -7,7 +7,8 @@
 
 `go-match` is a simple command-line utility that filters a list of paths based on include and exclude globstar patterns.
 
-The program takes a list of paths as input and outputs a JSON array of paths that match the include patterns and don't match the exclude patterns.
+The program takes a list of paths as input and outputs a JSON array of paths that
+match the include patterns and don't match the exclude patterns.
 
 ## Installation
 
