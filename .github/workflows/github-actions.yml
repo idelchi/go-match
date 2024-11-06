@@ -47,4 +47,3 @@ jobs:
     needs: info
     permissions:
       contents: write
-
