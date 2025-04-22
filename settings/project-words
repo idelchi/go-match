@@ -6,6 +6,7 @@
 # cspell --config=.devenv/settings/cspell.yaml --words-only --unique "**/*.go" "**/*.py" "**/*.sh" | sort --ignore-case >> settings/project-words.txt
 
 bmatcuk
+doublestar
 godyl
 forbidigo
 idelchi
