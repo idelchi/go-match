@@ -16,7 +16,7 @@ func Run(version string) error {
 		return fmt.Errorf("parsing flags: %w", err)
 	}
 
-	if err := cfg.Validate(); err != nil {
+	if err = cfg.Validate(); err != nil {
 		return fmt.Errorf("application configuration: %w", err)
 	}
 

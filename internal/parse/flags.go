@@ -25,7 +25,7 @@ func Parse(version string) (cfg config.Config, err error) {
 	pflag.Parse()
 
 	// Bind pflag flags to viper
-	if err := viper.BindPFlags(pflag.CommandLine); err != nil {
+	if err = viper.BindPFlags(pflag.CommandLine); err != nil {
 		return cfg, fmt.Errorf("binding flags: %w", err)
 	}
 
@@ -35,7 +35,7 @@ func Parse(version string) (cfg config.Config, err error) {
 	viper.AutomaticEnv()
 
 	// Unmarshal the configuration into the Config struct
-	if err := viper.Unmarshal(&cfg); err != nil {
+	if err = viper.Unmarshal(&cfg); err != nil {
 		return cfg, fmt.Errorf("unmarshalling config: %w", err)
 	}
 
