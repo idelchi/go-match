@@ -1,6 +1,6 @@
 module github.com/idelchi/go-match
 
-go 1.23
+go 1.25.1
 
 require (
 	github.com/bmatcuk/doublestar/v4 v4.6.1

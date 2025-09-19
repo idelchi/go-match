@@ -12,14 +12,6 @@ match the include patterns and don't match the exclude patterns.
 
 ## Installation
 
-### From source
-
-```sh
-go install github.com/idelchi/go-match/@latest
-```
-
-### From installation script
-
 ```sh
 curl -sSL https://raw.githubusercontent.com/idelchi/go-match/refs/heads/main/install.sh | sh -s -- -d ~/.local/bin
 ```
