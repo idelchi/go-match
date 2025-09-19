@@ -22,7 +22,7 @@ curl -sSL https://raw.githubusercontent.com/idelchi/go-match/refs/heads/main/ins
 go-match [flags] [paths...]
 ```
 
-### Global Flags and Environment Variables
+### Configuration
 
 | Flag            | Environment Variable | Description                                   | Default |
 | --------------- | -------------------- | --------------------------------------------- | ------- |
